@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "tensile-cable-290306",
+  "private_key_id": "89d2ae2b194ce762dabcd8d9f1877d0e87cb1e66",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCkAyjqxiLyYRs2\nsoq/635NSKzFGOYm11hdPi+p7c6xcUx1CTi4/WU6M84cV7MftFo2gqjGVJTRTM50\ntOUCK0aObrAMB67Z3I60VAKZdeytO6adhUNoNw7YaGEY7m56Q7Fm9h/CCqxgPqHz\nv8wI7APdRF9sMPIPrDGf9z950bbT7hib2GcabZCFjElTZtXL45DosqRg6Zmqjtn0\nvWAgIglxt04y3MiSIpsRk+t0ue+Wfe+tXHIts6CfYgm6jIdKzGGJk3dVjJ7OMAkx\n6uD9C/CyWq27M4PIr4QWB4qIdGBwC8a8UPpxFif+42FGi+HpwjjBJp4OLC3gW6ww\npZUjZ0DzAgMBAAECggEAANlvHhbMQTL3NIBda7EgO5hWJEREzGhchyzdi4vnHNch\nMoKg4bzPiBzLyizI+xM3v0UTLB7fdN1aklpDBZDMXK93R5fHtDF07i0jMvmxo7A+\nj0FFeQmFu6icf6t/ifdUVSMcmm96fgv94GGMgKuMOVplWMayjqgcBB/j0/wPpwr4\nNajJhHFHlkOKYUZcSi+z7D4RSZpI5qsrwOzKzYhUVNatkypxnLf2Zqj5kselFkUI\nhYrVpU6RuRUx6385WahpaGRe5vmJh9Bx7cmIjFgjKKATi20cu/EliPyOVcMZrq5E\nb7L6xLC9hEXYILcqYXFeWpJiTI2xEWYHvhw9vp1I0QKBgQDRfBhoi3GpCOL0xtfh\n2p8OKwR/yTp3wgm7TG5ITYDu9w7PTVAl1F5IJOtvSUOZiVbLYESvpsEW9WtPuoLy\nKdeQZm+C6Q93nj9MFcQXdcez5nLs/ORhXx98HmM1bbK550PC5Vtr38ms5cvMS9Ox\nztoMQeYFV9RPp81WDAs9tKuUQwKBgQDIbj2+sGj2NHIzNLYAeo4j0xnmp1gXl8GF\nrCEz0nIausQtNxVJ/SfCTOH4hToCThlttEnc0iGTL/9F8e618ijwi/H9t7Z5xOP7\n1bH0EiByssCcXhoLiHP4x+1Btrwz66yP/yBIdRcFYDoE8olD4vFg9zc5LFsWQ6D2\nMwfS8+2tkQKBgEvr9cyt/RuOJPMhvcwVN+AipxbJD2+n228OXEnIDRqOX8ex9YJA\nXYs4FjvXCbDznYlH8pzWitSPTb0vk5XApGepOHDxlrF7oOUqXk9CWIZS1wQdA4hm\nuTp6qOoMP+IwdtaD2YZXLPiEsD/ym16t4Ujf+UWmd0QHRNwSsWBDwouRAoGBAK2C\nMdWIJfUtRcdqVDxp2+7Latqv96TE7PTpI/0Wq0zUbcuuqbFZhDfCEsTvoF4qefzs\nXBzbk9E1dcl5POspbaN/ose/aCpV9f8m6Vye7JQehntXQzjEsZCmko+Wv6o61TH6\n7FmNc5ZlzRRHWej453jHynimG1xUw10epCFMpW7hAoGBAKyRMbpsIPKjfriYot1w\n4LzbEZ1xXb/zYkAQlpicWbpkOvpXVFSWYtKZuDUqFjgo/GUMyMpAVdxIbcYC4SgY\nZUCtw3FNHf/PUMzbbT1q0lNd4zVgF2BE5JcS+PJZctedIHVAgM2vC9Z2V3FBhWxJ\nTp3hb+XaFT5kzTIRJkgA+MMa\n-----END PRIVATE KEY-----\n",
+  "client_email": "connector@tensile-cable-290306.iam.gserviceaccount.com",
+  "client_id": "102582309611864969381",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/connector%40tensile-cable-290306.iam.gserviceaccount.com"
+}

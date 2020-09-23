@@ -9,11 +9,14 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import logging
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 import environ
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+from sentry_sdk.integrations.logging import LoggingIntegration
 
 ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 APPS_DIR = ROOT_DIR / "src"
@@ -135,7 +138,6 @@ REDIS_HOST = env.str("REDIS_HOST", "localhost")
 
 REDIS_PORT = env.int("REDIS_PORT", 6379)
 
-
 # STATIC
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-root
@@ -225,3 +227,41 @@ REST_FRAMEWORK = {
 SWAGGER_SETTINGS = {
     "USE_SESSION_AUTH": False,
 }
+
+# GOOGLE SHEETS API SETTINGS
+# ------------------------------------------------------------------------------
+# https://console.developers.google.com/apis
+CREDENTIALS_FILE = env.str("CREDENTIALS_FILE")
+
+SPREADSHEET_ID = env.str("SPREADSHEET_ID")
+
+SHEET_ROWS_RANGE = ["1", "10000"]
+
+# Sentry
+# ------------------------------------------------------------------------------
+# All of this is already happening by default!
+sentry_logging = LoggingIntegration(
+    level=logging.INFO,  # Capture info and above as breadcrumbs
+    event_level=logging.ERROR,  # Send errors as events
+)
+
+sentry_sdk.init(
+    dsn="https://fe81490c0ada47d0bd678a11efbeadce@o451736.ingest.sentry.io/5438104",
+    integrations=[DjangoIntegration(), sentry_logging],
+    traces_sample_rate=1.0,
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True,
+)
+
+# HuntFlow
+# ------------------------------------------------------------------------------
+ALLOWED_STATUS_ID = env.int("ALLOWED_STATUS_ID")
+
+ALLOWED_TYPE = env.str("ALLOWED_TYPE")
+
+VACANCY_BASE_URL = "https://huntflow.ru/my/hiretrack#vacancy/"
+
+PERSONAL_API_TOKEN = env.str("PERSONAL_API_TOKEN")
+
+HOOK_SECRET_KEY = env.str("HOOK_SECRET_KEY")

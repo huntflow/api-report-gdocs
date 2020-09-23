@@ -21,10 +21,10 @@ from rest_framework import permissions
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="HireTrack API",
+        title="GoogleSheets Huntflow WebHook",
         default_version="v0.1",
         description="""
-        This page provides API reference for **HireTrack** backend.
+        This page provides API endpoint for webhook.
         """,
         terms_of_service="https://www.google.com/policies/terms/",
         contact=openapi.Contact(email="contact@localhost"),
@@ -49,6 +49,7 @@ swagger_urls = [
         r"^redoc/$", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"
     ),
 ]
+
 
 urlpatterns = [
     path("", include(swagger_urls)),

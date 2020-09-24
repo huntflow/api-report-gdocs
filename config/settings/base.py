@@ -256,11 +256,11 @@ sentry_sdk.init(
 
 # HuntFlow
 # ------------------------------------------------------------------------------
-ALLOWED_STATUS_ID = env.int("ALLOWED_STATUS_ID")
+ALLOWED_STATUS_NAME = env.str("ALLOWED_STATUS_NAME")
 
 ALLOWED_TYPE = env.str("ALLOWED_TYPE")
 
-VACANCY_BASE_URL = "https://huntflow.ru/my/hiretrack#vacancy/"
+VACANCY_BASE_URL = "https://huntflow.ru/my/{nick}#vacancy/"
 
 PERSONAL_API_TOKEN = env.str("PERSONAL_API_TOKEN")
 

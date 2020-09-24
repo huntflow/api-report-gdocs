@@ -9,3 +9,9 @@ REDIS_URL=redis://redis:6379/0
 # Celery
 # ------------------------------------------------------------------------------
 CELERY_BROKER_URL=redis://redis:6379/0
+CREDENTIALS_FILE=creds.json
+SPREADSHEET_ID=1U3VOS_S-glp2hG-PSpiZTQpN1epFU_BvtoEVRZ3Ht0I
+ALLOWED_STATUS_NAME=Предложение принято
+HOOK_SECRET_KEY=testSecretKey
+ALLOWED_TYPE=STATUS
+PERSONAL_API_TOKEN=300e84ee14473f04b95b9c969b627877e5f2cd97e2ea8cc9c8eb4b56380b7264

@@ -25,10 +25,10 @@ class DataConverter(object):
                 get_nested(self.data, "event.applicant.last_name"),
                 get_nested(self.data, "event.applicant.middle_name"),
                 get_nested(self.data, "author.name"),
-                self._get_customer(),
+                self._get_vacancy_info("account_info.name"),
                 self._get_account_division(),
                 self._get_vacancy_url(),
-                get_nested(self.data, "event.vacancy.state"),
+                self._get_vacancy_info("status"),
                 self._get_applicant_source(),
                 self._get_status(),
             ]
@@ -54,11 +54,12 @@ class DataConverter(object):
         name = self._connector.get_applicant_source(account_id, applicant_id)
         return name
 
-    # TODO: NEED IMPLEMENTATION
     def _get_status(self):
+        account_id = get_nested(self.data, "account.id")
+        applicant_id = get_nested(self.data, "event.applicant.id")
+        return self._connector.get_applicant_status(account_id, applicant_id)
 
-        return "None"
-
-    # TODO: NEED IMPLEMENTATION
-    def _get_customer(self):
-        return "None"
+    def _get_vacancy_info(self, attr_name):
+        account_id = get_nested(self.data, "account.id")
+        vacancy_id = get_nested(self.data, "event.vacancy.id")
+        return self._connector.get_vacancy_info(account_id, vacancy_id, attr_name)

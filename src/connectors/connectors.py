@@ -96,3 +96,29 @@ class HuntFlowConnector(object):
         method = self._api_url + "me"
         response, status_code = self._get_response(method)
         return status_code == 200
+
+    def get_applicant_status(self, account_id, applicant_id):
+        method = (
+            self._api_url
+            + f"account/{account_id}/applicants/{applicant_id}/questionary?normalize=true"
+        )
+        response, status_code = self._get_response(method)
+        if status_code == 200:
+            try:
+                return get_nested(response, "already_employee.name")
+            except KeyError:
+                return None
+        return None
+
+    def get_vacancy_info(self, account_id, vacancy_id, attr_name):
+        method = (
+            self._api_url
+            + f"account/{account_id}/vacancy_request?vacancy_id={vacancy_id}"
+        )
+        response, status_code = self._get_response(method)
+        if status_code == 200:
+            return self._get_data_value(
+                response.get("items"), attr_name, {"vacancy": vacancy_id}
+            )
+
+        return None

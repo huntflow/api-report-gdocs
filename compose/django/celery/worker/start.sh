@@ -4,4 +4,4 @@ set -o errexit
 set -o nounset
 
 
-celery -A config.celery_app worker -l DEBUG
+celery -A config.celery_app worker -l INFO

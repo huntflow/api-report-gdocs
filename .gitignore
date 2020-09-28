@@ -7,6 +7,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+credis.json
+
 # C extensions
 *.so
 .xml
@@ -387,3 +389,4 @@ media/
 
 
 /templates/
+/google_credits.json

@@ -4,6 +4,7 @@ import logging
 import apiclient
 import httplib2
 import requests
+from googleapiclient.errors import HttpError
 from oauth2client.service_account import ServiceAccountCredentials
 from src.connectors.utils import get_nested
 
@@ -30,25 +31,62 @@ class GoogleSheetsConnector(object):
             )
         self._range = rows_range
 
-    def _get_range(self) -> str:
+    @classmethod
+    def get_sheet_name(cls) -> str:
         date = datetime.datetime.now()
-        return f"{date.month}.{date.year}!A{self._range[0]}:K{self._range[1]}"
+        return f"{date.month}.{date.year}"
+
+    def _get_range(self) -> str:
+        name = self.get_sheet_name()
+        return f"{name}!A{self._range[0]}:K{self._range[1]}"
 
     def append_data(self, values: list):
-        response = (
+        try:
+            response = self._send_data([values])
+        except HttpError:
+            response = self._create_table(values)
+
+        if response.get("spreadsheetId") == self._spreadsheet_id:
+            logging.info("[CONNECTOR]: Sheet was updated")
+        else:
+            logging.error("[CONNECTOR]: Sheet updating was closed by error")
+
+    def _send_data(self, values):
+        return (
             self._service.spreadsheets()
             .values()
             .append(
                 spreadsheetId=self._spreadsheet_id,
                 range=self._get_range(),
                 valueInputOption="USER_ENTERED",
-                body={"majorDimension": "ROWS", "values": [values]},
+                body={"majorDimension": "ROWS", "values": values},
             )
+            .execute()
         )
-        if response.execute().get("spreadsheetId") == self._spreadsheet_id:
-            logging.info("[CONNECTOR]: Sheet was updated")
-        else:
-            logging.error("[CONNECTOR]: Sheet updating was closed by error")
+
+    def _create_table(self, values):
+        request_body = {
+            "requests": [{"addSheet": {"properties": {"title": self.get_sheet_name()}}}]
+        }
+        first_row = [
+            "Дата смены этапа",
+            "Имя кандидата",
+            "Фамилия кандидата",
+            "Отчество кандидата",
+            "Рекрутер",
+            "Заказчик по заявке",
+            "Подразделение",
+            "Ссылка на вакансию",
+            "Категория вакансии",
+            "Источник кандидата",
+            "Статус",
+        ]
+
+        self._service.spreadsheets().batchUpdate(
+            spreadsheetId=self._spreadsheet_id, body=request_body
+        ).execute()
+
+        return self._send_data([first_row, values])
 
 
 class HuntFlowConnector(object):

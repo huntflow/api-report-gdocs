@@ -20,7 +20,7 @@ class DataConverter(object):
             and get_nested(self.data, "event.type") == self._allowed_type
         ):
             return [
-                str(datetime.datetime.today()),
+                str(datetime.datetime.today().strftime("%d.%m.%Y %H:%M")),
                 get_nested(self.data, "event.applicant.first_name"),
                 get_nested(self.data, "event.applicant.last_name"),
                 get_nested(self.data, "event.applicant.middle_name"),
@@ -28,7 +28,7 @@ class DataConverter(object):
                 self._get_vacancy_info("account_info.name"),
                 self._get_account_division(),
                 self._get_vacancy_url(),
-                self._get_vacancy_info("status"),
+                self._get_vacancy_category(),
                 self._get_applicant_source(),
                 self._get_status(),
             ]
@@ -43,9 +43,10 @@ class DataConverter(object):
 
     def _get_vacancy_url(self):
         nick = self._connector.get_account_nick(get_nested(self.data, "account.id"))
-        return '=ГИПЕРССЫЛКА("{url}"; "Открыть вакансию")'.format(
-            url=self._base_url.format(nick=nick)
-            + str(get_nested(self.data, "event.vacancy.id"))
+        return "{url}{vacancy_id}/filter/workon/id/{applicant_id}".format(
+            url=self._base_url.format(nick=nick),
+            vacancy_id=str(get_nested(self.data, "event.vacancy.id")),
+            applicant_id=str(get_nested(self.data, "event.applicant.id")),
         )
 
     def _get_applicant_source(self):
@@ -63,3 +64,6 @@ class DataConverter(object):
         account_id = get_nested(self.data, "account.id")
         vacancy_id = get_nested(self.data, "event.vacancy.id")
         return self._connector.get_vacancy_info(account_id, vacancy_id, attr_name)
+
+    def _get_vacancy_category(self):
+        return get_nested(self.data, "event.vacancy.category.name")

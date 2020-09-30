@@ -28,4 +28,4 @@ HOOK_SECRET_KEY=testSecretKey
 ALLOWED_TYPE=STATUS
 
 # персональный токен хантфлоу, для доступа к апи
-PERSONAL_API_TOKEN=b4d46c2b8be48dd72caaf29f3fcca192ccb4dffed10a5acb0ddc6cfb221e9e73
+PERSONAL_API_TOKEN=

@@ -231,10 +231,13 @@ SWAGGER_SETTINGS = {
 # GOOGLE SHEETS API SETTINGS
 # ------------------------------------------------------------------------------
 # https://console.developers.google.com/apis
+# название файла credits google .json, который был получен от google (берется из переменных среды)
 CREDENTIALS_FILE = env.str("CREDENTIALS_FILE")
-
+# id таблицы, в которую будет произведена запись (берется из переменных среды)
 SPREADSHEET_ID = env.str("SPREADSHEET_ID")
-
+# диапозон работы. Первое значение в массиве указание значение для столбца A
+# второе значение, указание значения для столбца К
+# пример: A1:K10000
 SHEET_ROWS_RANGE = ["1", "10000"]
 
 # Sentry

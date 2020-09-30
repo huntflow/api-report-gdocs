@@ -8,7 +8,6 @@ services:
     image: google_sheet_connector_django_image
     volumes:
       - .:/app
-      - /app/venv/
     env_file:
       - ./.envs/.django
     ports:

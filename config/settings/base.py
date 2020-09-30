@@ -34,7 +34,7 @@ if READ_DOT_ENV_FILE:
 SECRET_KEY = "b*d^g!vbbk_qzr*1!_+_$o1o_k#xoj=mh0@-5lg9ha#ju_^!jr"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TIME_ZONE = "Etc/GMT-7"
 

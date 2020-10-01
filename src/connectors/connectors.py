@@ -1,5 +1,4 @@
 import datetime
-import logging
 
 import apiclient
 import httplib2
@@ -42,14 +41,9 @@ class GoogleSheetsConnector(object):
 
     def append_data(self, values: list):
         try:
-            response = self._send_data([values])
+            self._send_data([values])
         except HttpError:
-            response = self._create_table(values)
-
-        if response.get("spreadsheetId") == self._spreadsheet_id:
-            logging.info("[CONNECTOR]: Sheet was updated")
-        else:
-            logging.error("[CONNECTOR]: Sheet updating was closed by error")
+            self._create_table(values)
 
     def _send_data(self, values):
         return (

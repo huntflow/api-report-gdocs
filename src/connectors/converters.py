@@ -66,4 +66,7 @@ class DataConverter(object):
         return self._connector.get_vacancy_info(account_id, vacancy_id, attr_name)
 
     def _get_vacancy_category(self):
-        return get_nested(self.data, "event.vacancy.category.name")
+        try:
+            return get_nested(self.data, "event.vacancy.category.name")
+        except KeyError:
+            return None

@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  django: &django
+    build:
+      context: .
+      dockerfile: ./compose/django/Dockerfile
+    image: google_sheet_connector_django_image
+    volumes:
+      - .:/app
+    env_file:
+      - ./.envs/.django
+    ports:
+    - 8080:3000
+    command: /start.sh
+
+  redis:
+    image: redis:5.0
+
+  celeryworker:
+    <<: *django
+    image: google_sheet_connector_celeryworker_image
+    depends_on:
+      - redis
+    ports: [ ]
+    command: /start-celeryworker.sh
